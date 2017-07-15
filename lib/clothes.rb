@@ -1,5 +1,6 @@
 class Clothes
   attr_accessor :all_items
+
   def initialize
     @all_items = create_all_items
   end
@@ -12,13 +13,20 @@ class Clothes
     if Dir.exist?(path_for_data)
       Dir[path_for_data + '/*.txt'].map { |item| Item.new(File.readlines(item)) }
     else
-      abort "Данных о вещах не найдено."
+      raise "Данных о вещах не найдено."
     end
+  end
+
+  def kit(generated_clothes)
+    types = generated_clothes.map { |item| item.type }.uniq
+    types.map { |type| generated_clothes.select { |item| item.type == type}.sample }
   end
 
   def generate(answer)
     generated_clothes = []
-    @all_items.each { |item| generated_clothes << item if answer.between?(item.temperature[0], item.temperature[1]) }
-    generated_clothes
+    @all_items.each do |item|
+      generated_clothes << item if answer.between?(item.temperature_min, item.temperature_max)
+    end
+    kit(generated_clothes)
   end
 end
