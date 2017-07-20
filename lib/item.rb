@@ -1,5 +1,5 @@
 class Item
-  attr_reader :temperature_min, :temperature_max, :type
+  attr_reader :name, :temperature_min, :temperature_max, :type
   def initialize(item_data)
     @name = item_data[0].chomp
     @type = item_data[1].chomp
