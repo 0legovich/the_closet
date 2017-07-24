@@ -17,6 +17,4 @@ describe 'Clothes' do
       expect(0.between?(item.temperature_min, item.temperature_max)).to eq true
     end
   end
-
-
 end
