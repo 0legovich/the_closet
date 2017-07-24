@@ -2,7 +2,7 @@ class Clothes
   attr_accessor :all_items
 
   def initialize(path_for_data)
-    @all_items = create_all_items(path_for_data)
+    @all_items = get_form_dir(path_for_data)
   end
 
   #answer - Integer
@@ -16,7 +16,7 @@ class Clothes
 
   private
 
-  def create_all_items(path_for_data)
+  def get_form_dir(path_for_data)
     if Dir.exist?(path_for_data)
       Dir[path_for_data + '/*.txt'].map { |item| Item.new(File.readlines(item)) }
     else
