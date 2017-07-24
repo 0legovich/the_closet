@@ -18,7 +18,7 @@ class Clothes
 
   def get_form_dir(path_for_data)
     if Dir.exist?(path_for_data)
-      Dir[path_for_data + '/*.txt'].map { |item| Item.new(File.readlines(item)) }
+      Dir[path_for_data + '/*.txt'].map { |item| Item.new(item) }
     else
       raise "Данных о вещах не найдено."
     end
