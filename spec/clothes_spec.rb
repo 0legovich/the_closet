@@ -1,6 +1,6 @@
 require 'rspec'
-require_relative '../lib/clothes'
-require_relative '../lib/item'
+require 'clothes'
+require 'item'
 
 describe 'Clothes' do
   let(:path_for_data) { File.dirname(__FILE__) + '/fixtures' }
