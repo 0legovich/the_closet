@@ -1,4 +1,4 @@
-class Clothes
+class Wardrobe
   attr_accessor :all_items
 
   def initialize(path_for_data)
@@ -9,14 +9,20 @@ class Clothes
     @all_items.map(&:type).uniq
   end
 
-  def all_items_of_params(type, temperature)
+  def select_clothes_by_type(type)
+    @all_items.select {|item| item.type == type}
+  end
+
+  def select_clothes_by_temperature(temperature)
     @all_items.select do |item|
-      item.type == type && temperature.between?(item.temperature_min, item.temperature_max)
+      temperature.between?(item.temperature_min, item.temperature_max)
     end
   end
 
-  def generate(temperature)
-    types_items.map {|type| all_items_of_params(type, temperature).sample}.compact
+  def get_kit_clothes_for_temperetute(temperature)
+    types_items.map do |type|
+      (select_clothes_by_type(type) & select_clothes_by_temperature(temperature)).sample
+    end.compact
   end
 
   #answer - Integer
