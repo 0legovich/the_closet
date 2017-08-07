@@ -19,7 +19,7 @@ class Wardrobe
     end
   end
 
-  def get_kit_clothes_for_temperetute(temperature)
+  def get_kit_clothes_by_temperetute(temperature)
     types_items.map do |type|
       (select_clothes_by_type(type) & select_clothes_by_temperature(temperature)).sample
     end.compact

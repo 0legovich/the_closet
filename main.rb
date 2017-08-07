@@ -14,7 +14,7 @@ while answer.empty? || !answer.to_i.between?(-50, 50)
 end
 temperature = answer.to_i
 
-kit = wardrobe.get_kit_clothes_for_temperetute(temperature)
+kit = wardrobe.get_kit_clothes_by_temperetute(temperature)
 
 if kit.empty?
   puts "В гардеробе ни чего не найдено."
