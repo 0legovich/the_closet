@@ -19,7 +19,9 @@ describe 'Wardrobe' do
   end
 
   describe '#types_items' do
-
+    it 'select 2 type items for good data' do
+      expect(wardrobe.types_items).to match_array(['Штаны', 'Головной убор'])
+    end
   end
 
   describe '#select_clothes_by_type' do
@@ -36,24 +38,30 @@ describe 'Wardrobe' do
   end
 
   describe '#select_clothes_by_temperature' do
+    #вытащим все шмотки
     it 'select array of 3 items by temperature' do
       expect(wardrobe.select_clothes_by_temperature(0).count).to eq 3
     end
+    #вытащим только штаны
     it 'select array of 2 items by temperature' do
       expect(wardrobe.select_clothes_by_temperature(-15).count).to eq 2
     end
+    #невытащим ни чего
     it 'select empty array of items by temperature' do
       expect(wardrobe.select_clothes_by_temperature(30).count).to eq 0
     end
   end
 
   describe '#get_kit_clothes_by_temperetute' do
+    #вытащим один Головной убор и одни штаны
     it 'get array of 2 kits clothes by temperetute' do
       expect(wardrobe.get_kit_clothes_by_temperetute(0).count).to eq 2
     end
+    #вытащим только штаны
     it 'get array of 1 kit clothes by temperetute' do
       expect(wardrobe.get_kit_clothes_by_temperetute(2).count).to eq 1
     end
+    #ни чего не вытащим = "В гардеробе ни чего не найдено."
     it 'get empty array of kits clothes by temperetute' do
       expect(wardrobe.get_kit_clothes_by_temperetute(5).count).to eq 0
     end
